@@ -101,7 +101,7 @@ request.credentials     = credentials
 request.orderNumber     = "1234567-2"
 request.ref1            = # string
 request.ref2            = # string
-request.shipDate        = DateTime.now
+request.shipDate        = Date.today
 request.shipMethod      = "Ground"
 request.billingOption   = "Prepaid"
 request.labelType       = "ZPL"
@@ -115,11 +115,22 @@ request.items           = items
 api = PurolatorWebServices::Api.new(:test)
 
 begin
+  puts "Getting Rates"
+  response = api.getRates(GetRates.new(request))
+  response.rates.each.with_index do |rate, ndx|
+    puts "Package #{ndx}"
+    puts "  method: #{rate.shipMethod}"
+    puts "  estimated delivery date: #{rate.estimatedDeliveryDate}"
+    puts "  estimated rate: #{rate.estimatedRate}"
+  end
+
+  puts "Requesting Labels"
   response = api.addOrder(AddOrder.new(request))
-  response.packages.each do |pkg|
-    puts "TrackingNumber: #{pkg.trackingNumber}"
-    puts "Charge: #{pkg.shippingCharge}"
-    puts "ZPL Image:\n#{pkg.zPLCode}\n"
+  response.packages.each.with_index do |pkg, ndx|
+    puts "Package #{ndx}"
+    puts "  TrackingNumber: #{pkg.trackingNumber}"
+    puts "  Charge: #{pkg.shippingCharge}"
+    puts "  ZPL Image:\n#{pkg.zPLCode}\n"
   end
 
 ensure
