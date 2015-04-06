@@ -22,3 +22,7 @@ namespace :soap do
     end
   end
 end
+
+task :test do
+  require 'purolator_web_services/test'
+end
