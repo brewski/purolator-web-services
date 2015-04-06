@@ -1,6 +1,8 @@
+require 'purolator_web_services/soap/defaultDriver'
+
 module PurolatorWebServices
   class Api
-    include PurolatorWebServices::Definitions
+    include PurolatorWebServices::Soap
 
     class ServiceException < RuntimeError
       attr_accessor :details
@@ -10,19 +12,12 @@ module PurolatorWebServices
       end
     end
 
-    attr_accessor :environment, :port
+    attr_accessor :port
     attr_reader :wiredump
 
     def initialize(environment)
-      self.environment = environment
-      self.port = ShippingServicesSoap.new(service_url)
+      self.port = Soap::ShippingServicesV3Soap.new(environment)
       init_service_methods
-    end
-
-    def service_url
-      environment.to_sym == :production ?
-          'https://www.purolatorshipping.com/WebServices/ShippingServices.asmx' :
-          'http://support.pclusa.com/Sandbox/WebServices/ShippingServices.asmx'
     end
 
     def issue_request(service_method_name, *args)
