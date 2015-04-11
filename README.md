@@ -16,9 +16,23 @@ require 'purolator_web_services'
 ```
 
 ## Testing
-This gem includes a small integration test suite to test several of the API methods in the Purolator sandbox environment. I highly recommend running these tests before integrating the gem with your application. You can run the test suite from within your application as follows:
+This gem includes a small integration test suite to test several of the API methods in the Purolator sandbox environment. I highly recommend running these tests before integrating the gem with your application.
 
-    USERNAME=username PASSWORD=password CLIENT_ID=client_id bundle exec ruby -e 'require "purolator_web_services/test"'
+### Rails Applications
+
+    USERNAME=username PASSWORD=password CLIENT_ID=client_id bundle exec rake purolator_web_services:test
+
+### Non-Rails Applications
+
+
+```ruby
+# test.rb
+gem_dir = Gem::Specification.find_by_name('purolator-web-services').gem_dir
+test_files = Dir.glob(File.join(gem_dir, 'test', '*_test.rb'))
+test_files.each { |file| require file }
+```
+
+    USERNAME=username PASSWORD=password CLIENT_ID=client_id bundle exec ruby test.rb
 
 ## Examples
 ### Creating a shipment with multiple packages
