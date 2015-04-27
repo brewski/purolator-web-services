@@ -7,7 +7,7 @@ module Soap
 
 class ShippingServicesV3Soap < ::SOAP::RPC::Driver
   TestEndpointUrl = "http://sandbox.purolatorshipping.com/WebServices/ShippingServicesV3.asmx"
-  ProductionEndpointUrl = "https://www.purolatorshipping.com/WebServices/ShippingServicesV3.asmx"
+  ProductionEndpointUrl = "https://www3.purolatorshipping.com/WebServices/ShippingServicesV3.asmx"
 
   Methods = [
     [ "http://PurolatorServices.com/GetRates",
@@ -140,8 +140,8 @@ class ShippingServicesV3Soap < ::SOAP::RPC::Driver
     ]
   ]
 
-  def initialize(environment)
-    super(environment == :production ? ProductionEndpointUrl : TestEndpointUrl, nil)
+  def initialize(api_url)
+    super(api_url, nil)
     self.mapping_registry = DefaultMappingRegistry::EncodedRegistry
     self.literal_mapping_registry = DefaultMappingRegistry::LiteralRegistry
     init_methods

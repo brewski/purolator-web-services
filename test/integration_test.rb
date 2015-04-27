@@ -18,7 +18,7 @@ class IntegrationTest < MiniTest::Unit::TestCase
     end
 
     @credentials = CredentialInfo.new(username, password, client_id)
-    @api = PurolatorWebServices::Api.new(:test)
+    @api = PurolatorWebServices::Api.new(ShippingServicesV3Soap::TestEndpointUrl)
   end
 
   def test_add_order_request

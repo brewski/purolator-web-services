@@ -99,7 +99,7 @@ request.currency        = "USD"
 request.packages        = packages
 request.items           = items
 
-api = PurolatorWebServices::Api.new(:test)
+api = PurolatorWebServices::Api.new(ShippingServicesV3Soap::TestEndpointUrl)
 
 begin
   puts "Getting Rates"
@@ -134,7 +134,7 @@ void_request = OrderListRequest.new
 void_request.credentials  = credentials
 void_request.orderNumbers = [ request.orderNumber ]
 
-api = PurolatorWebServices::Api.new(:test)
+api = PurolatorWebServices::Api.new(ShippingServicesV3Soap::TestEndpointUrl)
 
 begin
   response = api.voidOrders(VoidOrders.new(void_request))

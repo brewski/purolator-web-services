@@ -15,8 +15,8 @@ module PurolatorWebServices
     attr_accessor :port
     attr_reader :wiredump
 
-    def initialize(environment)
-      self.port = Soap::ShippingServicesV3Soap.new(environment)
+    def initialize(api_url)
+      self.port = Soap::ShippingServicesV3Soap.new(api_url)
       init_service_methods
     end
 
