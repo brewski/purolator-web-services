@@ -1,3 +1,3 @@
 module PurolatorWebServices
-  VERSION = "3.1.0"
+  VERSION = "4.3.0"
 end
