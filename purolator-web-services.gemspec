@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = PurolatorWebServices::VERSION
   spec.authors       = ["Brian Abreu"]
   spec.email         = ["brian@nuts.com"]
-  spec.description   = "Provies an interface to the Purolator web services API"
+  spec.description   = "Provides an interface to the Purolator web services API"
   spec.summary       = "Interfaces with the Purolator SOAP API"
   spec.homepage      = "https://github.com/brewski/purolator-web-services"
   spec.license       = "MIT"
